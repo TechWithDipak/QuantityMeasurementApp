@@ -1,26 +1,40 @@
 package com.quantit;
 
-public class QuantityMeasurementApp {
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-    public static class Feet {
-        private final double value;
+public class QuantityMeasurementAppTest {
 
-        public Feet(double value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
-            Feet other = (Feet) obj;
-            return Double.compare(this.value, other.value) == 0;
-        }
+    @Test
+    void testEquality_SameValue() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(1.0);
+        assertTrue(f1.equals(f2));
     }
 
-    public static void main(String[] args) {
-        Feet f1 = new Feet(1.0);
-        Feet f2 = new Feet(1.0);
-        System.out.println(f1.equals(f2));
+    @Test
+    void testEquality_DifferentValue() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(2.0);
+        assertFalse(f1.equals(f2));
+    }
+
+    @Test
+    void testEquality_NullComparison() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        assertFalse(f1.equals(null));
+    }
+
+    @Test
+    void testEquality_SameReference() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        assertTrue(f1.equals(f1));
+    }
+
+    @Test
+    void testEquality_NonNumericInput() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        String nonNumeric = "NotFeet";
+        assertFalse(f1.equals(nonNumeric));
     }
 }
