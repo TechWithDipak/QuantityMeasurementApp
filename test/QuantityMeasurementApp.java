@@ -62,4 +62,4 @@ public class QuantityMeasurementAppTest {
         String nonNumeric = "NotInches";
         assertFalse(i1.equals(nonNumeric));
     }
-}
+}     
